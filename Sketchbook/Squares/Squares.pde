@@ -1,4 +1,5 @@
 int[][] _board;
+PImage img;
 
 public void getBoard() {
 
@@ -202,35 +203,45 @@ public void getBoard() {
 
 void setup(){
   
+  img = loadImage("sphagnum-moss-green-background.jpg");
   //Initialize Board
   size(760,760);
-  background(144,238,144);
+  image(img,0,0,width,height);
+  //background(144,238,144);
+  noStroke();
   getBoard();
   
   //Color Board
   for (int i = 0; i < 30; i++){
     for (int j = 0; j < 30; j++){
-      if (_board[i][j] == 0){
+      //if (_board[i][j] == 0){
         //Color(Background)
-        fill(144,238,144);
+        //fill(100,200,50);
         //strokeWeight(0); 
-      }
+      //}
       if (_board[i][j] == 1){ 
         //Color(Normal)
         fill(255,140,0);
-        strokeWeight(1);
+        //strokeWeight(1);
       }
       if (_board[i][j] == 2){
         //Color(Normal)
-        fill(255,140,0); 
-        strokeWeight(1);
+        fill(255,175,0); 
+        //strokeWeight(1);
       }
       if (_board[i][j] == 3){
         //Color(Normal)
-        fill(255,140,0); 
-        strokeWeight(1);
+        fill(255,175,0); 
+        //strokeWeight(1);
       }
-      rect(5+(j*25),5+(i*25),25,25);
+      if (_board[i][j] == 5){
+        //Color(Normal)
+        fill(255,0,255); 
+        //strokeWeight(1);
+      }
+      if (_board[i][j] != 0){
+        rect(5+(j*25),5+(i*25),25,25);
+      }
     }
   }
 }
