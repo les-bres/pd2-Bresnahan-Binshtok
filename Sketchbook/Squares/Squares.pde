@@ -201,30 +201,36 @@ public void getBoard() {
 }
 
 void setup(){
-  size(1000,1000);
+  
+  //Initialize Board
+  size(760,760);
   background(144,238,144);
-  strokeWeight(3);
   getBoard();
   
+  //Color Board
   for (int i = 0; i < 30; i++){
     for (int j = 0; j < 30; j++){
       if (_board[i][j] == 0){
         //Color(Background)
-        fill(144,238,144); 
+        fill(144,238,144);
+        //strokeWeight(0); 
       }
       if (_board[i][j] == 1){ 
         //Color(Normal)
         fill(255,140,0);
+        strokeWeight(1);
       }
       if (_board[i][j] == 2){
         //Color(Normal)
         fill(255,140,0); 
+        strokeWeight(1);
       }
       if (_board[i][j] == 3){
         //Color(Normal)
         fill(255,140,0); 
+        strokeWeight(1);
       }
-      rect(5+(i*30),5+(j*30),30,30);
+      rect(5+(j*25),5+(i*25),25,25);
     }
   }
 }
