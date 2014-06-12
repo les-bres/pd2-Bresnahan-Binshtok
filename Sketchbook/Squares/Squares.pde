@@ -203,25 +203,20 @@ public void getBoard() {
 
 void setup(){
   
-  img = loadImage("sphagnum-moss-green-background.jpg");
+  img = loadImage("Acanthaceae.jpg");
   //Initialize Board
-  size(760,760);
-  image(img,0,0,width,height);
-  //background(144,238,144);
+  size(900,760);
+  image(img,0,0,width*1.5,height);
+  background(75,170,0);
   noStroke();
   getBoard();
   
   //Color Board
   for (int i = 0; i < 30; i++){
     for (int j = 0; j < 30; j++){
-      //if (_board[i][j] == 0){
-        //Color(Background)
-        //fill(100,200,50);
-        //strokeWeight(0); 
-      //}
       if (_board[i][j] == 1){ 
         //Color(Normal)
-        fill(255,140,0);
+        fill(255,175,0);
         //strokeWeight(1);
       }
       if (_board[i][j] == 2){
@@ -244,6 +239,9 @@ void setup(){
       }
     }
   }
+  //Sidebar
+  fill(0,255,255);
+  rect(760,0,140,760);
 }
 
 //Color(Background)
@@ -272,3 +270,9 @@ void setup(){
 //College 1
 //No College 2
 //Raised Platform 4
+
+//if (_board[i][j] == 0){
+//Color(Background)
+//fill(100,200,50);
+//strokeWeight(0); 
+//}
