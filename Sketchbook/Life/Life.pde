@@ -1,5 +1,5 @@
 int[][] _board;
-PImage bg;
+PImage img;
 
 public void getBoard() {
 
@@ -202,14 +202,13 @@ public void getBoard() {
 }
 
 void setup(){
-  
-  bg = loadImage("plants.jpg");
+  //img = loadImage("plants.jpg");
+  //image( img, 255, 127);
   //Initialize Board
   size(900,760);
   //image(img,0,0,width*1.5,height);
-  //background(75,170,0);
-  
-  background( bg );
+  background(75,170,0);
+  //background( img );
   noStroke();
   getBoard();
   
