@@ -151,11 +151,11 @@ public void getBoard() {
 void setup(){
   
   //Initialize Board
-  size(894,760);
+  size(1060,760);
 
   img = loadImage("plants.jpg");
   tint(255,187);
-  image( img, 0, 0);
+  image( img, 0, 0, width, height);
  
   //background(75,170,0);
   //background( img );
@@ -186,7 +186,7 @@ void setup(){
         //strokeWeight(1);
       }
       if (_board[i][j] != 0){
-        rect(5+(j*25),5+(i*25),25,25);
+        rect(165+(j*25),5+(i*25),25,25);
       }
     }
   }
@@ -197,11 +197,11 @@ void setup(){
   
   stroke(0);
   strokeWeight(30);
-  line( 760, 0, 760, 894 );
+  line( 910, 0, 910, 924 );
  
     
   
-  setGradient( 760, 0, 200, 894, c1, c2, X_AXIS );
+  setGradient( 910, 0, 200, 924, c1, c2, X_AXIS );
   //fill(0,255,255);
   //rect(760,0,140,760);
 }
