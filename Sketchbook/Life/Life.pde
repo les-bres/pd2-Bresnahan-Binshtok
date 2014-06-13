@@ -1,6 +1,6 @@
 int[][] _board;
 PImage img;
-color c1,c2;
+color c1,c2, c3, c4;
 int X_AXIS = 2;
 int Y_AXIS = 1;
 
@@ -196,14 +196,20 @@ void setup(){
   c1 = color(66,72,232);
   
   stroke(0);
-  strokeWeight(30);
+  strokeWeight(50);
   line( 910, 0, 910, 924 );
  
-    
-  
   setGradient( 910, 0, 200, 924, c1, c2, X_AXIS );
-  //fill(0,255,255);
-  //rect(760,0,140,760);
+
+
+  c3 = color( 245, 79, 121);
+  c4 = color( 196, 47, 50 );
+  
+  stroke(0);
+  strokeWeight(50);
+  line( 150, 0, 150, 924 );
+  
+  setGradient( 0, 0, 150, 924, c3, c4, X_AXIS );
 }
 
 void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
