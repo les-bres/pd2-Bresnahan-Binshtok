@@ -3,7 +3,13 @@ PImage img;
 color c1,c2, c3, c4;
 int X_AXIS = 2;
 int Y_AXIS = 1;
+PFont f;
+String curDisplay;
+boolean yesOver = false;
+boolean noOver = false;
 
+int yesX,yesY,noX,noY;
+color yesC, noC, yesHigh, noHigh;
 
 void setup(){
   
@@ -87,7 +93,17 @@ void setup(){
   
   setGradient( 0, 0, 150, 924, c3, c4, X_AXIS );
   
+  
+  yesC = color(47,196,83);
+  noC = color(196,47,47);
 
+  yesX = 50;
+  yesY = 270;
+  
+  noX = 120;
+  noY = 270;
+  
+  
   rectMode(CENTER);
   
   noStroke();
@@ -95,15 +111,73 @@ void setup(){
   rect(85,160, 140, 310);
   
   
-  fill(47,196,83);
-  rect( 50,270,60,50);
+  fill(yesC);
+  rect( yesX,yesY,60,50);
   
-  fill(196,47,47);
-  rect(120, 270,60,50);
+  fill(noC);
+  rect(noX, noY,60,50);
   
-
+  f = loadFont("AppleBraille-20.vlw");
+  textFont(f,20);
+  fill(0);
+  text("YES", 32,280);
+  text("NO", 102,280);
+  
+  textFont(f,15);
+  textAlign(CENTER);
+  fill(255);
+  curDisplay = "Welcome to the Game of Life!\n\nAre you ready to begin?";
+  text(curDisplay, 85,160,140,310);
+  
 }
 
+/*
+void draw() {
+  update(mouseX,mouseY);
+  
+}
+
+void update(int x, int y) {
+  if ( overYes(circleX, circleY, circleSize) ) {
+    circleOver = true;
+    rectOver = false;
+  } else if ( overRect(rectX, rectY, rectSize, rectSize) ) {
+    rectOver = true;
+    circleOver = false;
+  } else {
+    circleOver = rectOver = false;
+  }
+}
+
+void mousePressed() {
+  if (circleOver) {
+    currentColor = circleColor;
+  }
+  if (rectOver) {
+    currentColor = rectColor;
+  }
+}
+
+boolean overRect(int x, int y, int width, int height)  {
+  if (mouseX >= x && mouseX <= x+width && 
+      mouseY >= y && mouseY <= y+height) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+boolean overCircle(int x, int y, int diameter) {
+  float disX = x - mouseX;
+  float disY = y - mouseY;
+  if (sqrt(sq(disX) + sq(disY)) < diameter/2 ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+*/
 
 void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
 
@@ -126,6 +200,8 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
     }
   }
 }
+
+
 
 //Color(Background)
 //fill(144,238,144);
