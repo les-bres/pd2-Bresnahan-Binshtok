@@ -1,0 +1,20 @@
+public class Question {
+
+    private String message;
+    private boolean ansK;
+
+    public Question(String s, boolean k) {
+	message = s;
+	ansK = k;
+    }
+
+
+    public String getMessage() {
+	return message;
+    }
+
+    public boolean getAnsType() {
+	return ansK;
+    }
+
+}
