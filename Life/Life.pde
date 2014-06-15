@@ -14,8 +14,7 @@ void setup(){
   tint(255,187);
   image( img, 0, 0, width, height);
  
-  //background(75,170,0);
-  //background( img );
+
   noStroke();
   
   Board board = new Board();
@@ -46,7 +45,24 @@ void setup(){
         //strokeWeight(1);
       }
       if (_board[i][j] != 0){
+        
+        if (_board[i][j] > 9) {
+          if (_board[i][j] % 10 == 1) {
+            rect(165+(j*25),5+(i*25),25,25,20,1,1,1);
+          }
+          else if (_board[i][j] % 10 == 2) {
+            rect(165+(j*25),5+(i*25),25,25,1,20,1,1);
+          }
+          else if (_board[i][j] % 10 == 3) {
+            rect(165+(j*25),5+(i*25),25,25,1,1,20,1);
+          }
+          else if (_board[i][j] % 10 == 4) {
+            rect(165+(j*25),5+(i*25),25,25,1,1,1,20);
+          }
+        }
+        else {  
         rect(165+(j*25),5+(i*25),25,25);
+        }
       }
     }
   }
