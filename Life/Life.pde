@@ -15,8 +15,8 @@ void setup(){
   image( img, 0, 0, width, height);
  
 
-  noStroke();
-  
+  //noStroke();
+  stroke(75);
   Board board = new Board();
   _board = board.getBoard();
 
@@ -91,11 +91,15 @@ void setup(){
   rectMode(CENTER);
   
   noStroke();
+  fill(0);
+  rect(85,160, 140, 310);
+  
+  
   fill(47,196,83);
-  rect( 40,250,60,50);
+  rect( 50,270,60,50);
   
   fill(196,47,47);
-  rect(120, 250,60,50);
+  rect(120, 270,60,50);
   
 
 }
