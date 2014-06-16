@@ -11,6 +11,7 @@ public class Cards {
     ArrayList<House> houses;
 
     public Cards() {
+	//Pets
     }
 
     public Tile getTile() {
