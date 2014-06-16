@@ -1,8 +1,7 @@
 public class Board {
 
-    int[][] _board;
-    Square[][] _college;
-    Square[][] _nocollege;
+    private int[][] _board;
+    private Square colHead, noColHead, mergeHead, cur, begin;
 
     public Board() {
 	_board = new int[30][30];
@@ -15,7 +14,7 @@ public class Board {
 	_board[18][21] = 14;
   
 	for (int i = 22; i < 27; i++) {
-	    ;    _board[18][i] = 1;
+	    _board[18][i] = 1;
 	}
 	
 	_board[18][27] = 13;
@@ -205,6 +204,10 @@ public class Board {
 	for (int i = 3; i < 25; i++) {
 	    _board[28][i] = 3;
 	}
+
+	initializeLinked();
+
+	
     }
 
     public int[][] getBoard() {
@@ -231,12 +234,126 @@ public class Board {
 	    retStr+= line + "\n";
 	}
 	return retStr;
+
     }	
+
+    public void initializeLinked() {
+	
+	begin  = new Square(16,21);
+	colHead = new Square(17,21);
+	noColHead = new Square(15,21) ;
+	mergeHead = new Square(8,27);
+
+
+	//college
+	initialize( 1, colHead);
+	
+	cur.setNext(mergeHead);
+
+	
+	//nocollege
+	initialize( 2, noColHead);
+	cur.setNext(mergeHead);
+
+
+	//merged
+	initialize( 3, mergeHead );
+	
+
+	
+    }
+
+    public void initialize( int num, Square sq ) {
+	int x = sq.getRow();
+	int y = sq.getCol();
+	initialize( num, x + 1, y, sq, begin);
+	initialize( num, x - 1, y, sq, begin);
+	initialize( num, x, y + 1, sq, begin);
+	initialize( num, x, y - 1, sq, begin);
+    }
+	
+
+    public void initialize(int num, int x, int y, Square last, Square last2) {
+
+
+	if ( x < 0 || x >= _board.length || y < 0 || y >= _board[0].length ) {
+	    return;
+	}
+
+
+	else if ( ! ((_board[x][y] < 10 && _board[x][y] == num) || (_board[x][y] / 10) == num)) {
+	    return;
+	}
+
+	else if ( x == last2.getRow() && y == last2.getCol() ) {
+	    return;
+	}
+
+	else {
+
+	    cur = new Square(x,y);
+	    last.setNext(cur );
+
+	    
+	    initialize( num, x + 1, y, cur, last);
+	    initialize( num, x - 1, y, cur, last);
+	    initialize( num, x, y + 1, cur, last);
+	    initialize( num, x, y - 1, cur, last);
+	    
+	}
+	
+	
+    }
+
+    public Square getColHead() {
+	return colHead;
+    }
+    public Square getNoColHead() {
+	return noColHead;
+    }
+	    
+	
+    public String getArray( int[][] arr ) {
+	String retStr = "";
+	for (int i =0; i < arr.length; i++) {
+	    String line = "";
+	    for (int n =0; n < arr[i].length;n++) {
+		if (arr[i][n] > 9) {
+		    line += "c";
+		}
+		else if (arr[i][n] == 0) {
+		    line += " ";
+		}
+		else {
+		    line +=  arr[i][n];
+		}
+		    
+	    }
+	    retStr+= line + "\n";
+	}
+	return retStr;
+    }
+	
+	
 
 
     public static void main( String[] args ) {
+
 	Board board = new Board();
-	System.out.println(board);
+	int[][] test = new int[30][30];
+
+	//Square thing = board.getColHead();
+	Square thing = board.getNoColHead();
+	while (thing != null) {
+	    test[ thing.getRow() ][ thing.getCol() ] = 1;
+
+	    thing = thing.getNext();
+	}
+
+	System.out.println( board.getArray( test ) );
+
+     
     }
+
 
 }
