@@ -1,4 +1,5 @@
 int[][] _board;
+Square colHead, noColHead;
 PImage img;
 color c1,c2, c3, c4;
 int X_AXIS = 2;
@@ -46,6 +47,8 @@ void setup(){
   Board board = new Board();
   _board = board.getBoard();
 
+  colHead = board.getColHead();
+  noColHead = board.getNoColHead();
   
   //Color Board
   for (int i = 0; i < 30; i++){
@@ -157,6 +160,7 @@ void setup(){
   startqs[3] = new Question("Would you like to go to college?", true);
   
   needWrite = true;
+  
   
 }
 
