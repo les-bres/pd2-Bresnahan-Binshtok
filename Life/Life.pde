@@ -8,7 +8,9 @@ PFont f;
 String curDisplay;
 boolean yesOver = false;
 boolean noOver = false;
+boolean overSpinner = false;
 int qNum;
+Board board;
 
 int yesX,yesY,noX,noY;
 color yesC, noC, yesHigh, noHigh;
@@ -149,6 +151,10 @@ void setup(){
   text("YES", 36,310);
   text("NO", 106,310);
   
+  int[] angles = { 36, 36, 36, 36, 36, 36, 36, 36, 36, 36 };
+
+  pieChart(150, angles);
+  
   
   ansGiven = false;
   curAns = false;
@@ -164,6 +170,44 @@ void setup(){
   
 }
 
+void pieChart(float diameter, int[] data) {
+  float lastAngle = 0;
+  for (int i = 0; i < data.length; i++) {
+    if (i == 0){
+      fill(255,218,33);
+    }
+    if (i == 1){
+      fill(255,145,21);
+    }
+    if (i == 2){
+      fill(255,72,10);
+    }
+    if (i == 3){
+      fill(209,0,0);
+    }
+    if (i == 4){
+      fill(140,17,68);
+    }
+    if (i == 5){
+      fill(74,34,136);
+    }
+    if (i == 6){
+      fill(17,51,204);
+    }
+    if (i == 7){
+      fill(0,50,60);
+    }
+    if (i == 8){
+      fill(0,131,0);
+    }
+    if (i == 9){
+      fill(0,255,0);
+    }
+    //255,218,33
+    arc((width/2)+45, (height/2)+65, diameter, diameter, lastAngle, lastAngle+radians(data[i]));
+    lastAngle += radians(data[i]);
+  }
+}
 
 void draw() {
     
@@ -181,6 +225,9 @@ void draw() {
   }
   
   update(mouseX,mouseY);
+  
+  if (overSpinner)
+    //print("Over spinner...");
   
   if (yesOver) {
     fill(yesHigh);
@@ -244,6 +291,7 @@ void processBegin() {
     collegeBound = curAns;
     player = new Player(gender, collegeBound);
     gameBegun = true;
+    tracePath();
   }    
    
   qNum++;
@@ -253,6 +301,12 @@ void processBegin() {
   needWrite = true;
   ansGiven = false;
 }
+//
+//void tracePath(){
+//  int time;
+//  time = millis();
+//  while;
+//}
     
 void update(int x, int y) {
   if ( overRect(yesX, yesY, 60,50) ) {
@@ -261,6 +315,9 @@ void update(int x, int y) {
   } else if ( overRect(noX, noY, 50, 60) ) {
     noOver = true;
     yesOver = false;
+  } else if ( overSpin(noX, noY) ){
+    overSpinner = true;
+    yesOver = noOver = false;
   } else {
     yesOver = noOver = false;
   }
@@ -276,6 +333,17 @@ boolean overRect(int x, int y, int width, int height)  {
     return false;
   }
 }
+
+boolean overSpin(int x, int y)  {
+  
+  if (mouseX >= (width/2)-105 && mouseX <= (width/2)+195 && 
+      mouseY >= (height/2)-85 && mouseY <= (height/2)+215) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 
 
 void mousePressed(){
