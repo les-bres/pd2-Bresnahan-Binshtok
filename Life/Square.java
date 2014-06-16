@@ -28,6 +28,12 @@ public class Square implements Comparable{
 	_next = next;
 	return _next;
     }
+
+    public int setType(int t) {
+	int ret = _type;
+	_type = t;
+	return ret;
+    }
     
     public int[] getColor(){
 	return color;

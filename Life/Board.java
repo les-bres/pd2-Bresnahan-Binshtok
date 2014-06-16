@@ -7,7 +7,7 @@ public class Board {
 	_board = new int[30][30];
 
 	//starting point
-	_board[16][20] = 5;
+	_board[16][20] = 9;
 
 	// college path
 	_board[17][21] = 1;
@@ -206,6 +206,7 @@ public class Board {
 	}
 
 	initializeLinked();
+	implementColors();
 
 	
     }
@@ -221,7 +222,7 @@ public class Board {
 	    String line = "";
 	    for (int n =0; n <_board[i].length;n++) {
 		if (_board[i][n] > 9) {
-		    line += "c";
+		    line += "" + _board[i][n] % 10;
 		}
 		else if (_board[i][n] == 0) {
 		    line += " ";
@@ -259,7 +260,6 @@ public class Board {
 	//merged
 	initialize( 3, mergeHead );
 	
-
 	
     }
 
@@ -312,6 +312,107 @@ public class Board {
 	return noColHead;
     }
 	    
+
+    public void implementColors() {
+
+	int[] cTypes = new int[17];
+	int[] ncTypes = new int[13];
+	int[] mTypes = new int[204];
+
+
+	//implement no college
+	ncTypes[0] = 1;
+	setColors(2, 3, 0, 13, ncTypes);
+	setColors(3, 3, 0, 13, ncTypes);
+	setColors(4, 6, 0, 13, ncTypes);
+	System.out.println("cat");
+
+
+	//implement college
+	cTypes[16] = 1;
+	setColors(2, 4, 0, 17, cTypes);
+	setColors(3, 4, 0, 17, cTypes);
+	setColors(4, 8, 0, 17, cTypes);
+
+	//implements rest
+	for (int i = 0; i < 200; i+= 8) {
+	    if (i == 16 || i== 40) {
+		mTypes[i] = 1;
+		setColors(6,1,i,i+8,mTypes);
+	    }
+	    else {
+		setColors(6,2,i,i+8,mTypes);
+	    }
+	    setColors(5,1,i,i+8,mTypes);
+	    setColors(3,1,i,i+8,mTypes);
+	    setColors(2,2,i,i+8,mTypes);
+	    setColors(4,2,i,i+8,mTypes);
+	}
+
+	setColors( 6, 2, 200, 204, mTypes );
+	setColors( 2, 2, 200, 204, mTypes );
+
+	Square current = colHead;
+	for (int i = 0; i < 17; i++) {
+	    current.setType(cTypes[i]);
+	    setArr(current);
+	    current = current.getNext();
+	}
+
+	current = noColHead;
+	for (int i = 0; i<13; i++){
+	    current.setType(ncTypes[i]);
+	    setArr(current);
+	    current = current.getNext();
+	}
+
+	current = mergeHead;
+	for (int i = 0; i<204; i++) {
+	    current.setType(mTypes[i]);
+	    setArr(current);
+	    current = current.getNext();
+	}
+
+    }
+
+    public void setArr(Square s) {
+	int r = s.getRow();
+	int c = s.getCol();
+
+	if ( _board[r][c] < 10) {
+	    _board[r][c] = s.getType();
+	}
+	else {
+	    int num = _board[r][c] % 10;
+	    _board[r][c] = num + (10 * s.getType());
+	}
+    }
+
+    public void setColors( int type, int frequency, int begin, int end, int[] set ) {
+
+	for (int i = 0; i < frequency; i++) {
+	    int num = 1;
+	    while ( set[num] != 0 ) {
+		num = ((int) (Math.random() * (end-begin))) + begin;
+		if (num == (end -1)) {
+		    num = begin;
+		}
+		else {
+		    num++;
+		}
+	    }
+	    set[num] = type;
+	}
+    }
+	    
+	
+	    
+	// 1 is stop
+	// 2 is raffle
+	// 3 is spin again
+	// 4 is life tile
+	// 5 is pay day
+	// 6 is expense
 	
     public String getArray( int[][] arr ) {
 	String retStr = "";
@@ -319,7 +420,7 @@ public class Board {
 	    String line = "";
 	    for (int n =0; n < arr[i].length;n++) {
 		if (arr[i][n] > 9) {
-		    line += "c";
+		    line += "" + arr[i][n] % 10;
 		}
 		else if (arr[i][n] == 0) {
 		    line += " ";
@@ -341,16 +442,25 @@ public class Board {
 
 	Board board = new Board();
 	int[][] test = new int[30][30];
+	int i = 0;
 
 	//Square thing = board.getColHead();
 	Square thing = board.getNoColHead();
 	while (thing != null) {
-	    test[ thing.getRow() ][ thing.getCol() ] = 1;
-
+	    test[ thing.getRow() ][ thing.getCol() ] = thing.getType();
+	    i++;
 	    thing = thing.getNext();
 	}
 
-	System.out.println( board.getArray( test ) );
+	//System.out.println( i + "");
+	//System.out.println( board.getArray( test ) );
+	//System.out.println( board );
+	for (int n = 0; n <30 ; n++ ) {
+	    for (int num = 0; num <30; num++) {
+		//System.out.println( board.getBoard()[n][num] );
+	    }
+	}
+
 
      
     }

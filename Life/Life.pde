@@ -80,7 +80,7 @@ void setup(){
           }
         }
         else {  
-        rect(165+(j*25),5+(i*25),25,25);
+        rect(165+(j*25),5+(i*25),25,25,1,1,1,1);
         }
       }
     }
@@ -316,20 +316,30 @@ void update(int x, int y) {
 void colTest( int i ) {
     if (i == 1){ 
         //Color(Normal)
-        fill(255,175,0);
+        fill(224,41,53);
         //strokeWeight(1);
     }
     if (i == 2){
         //Color(Normal)
-        fill(255,175,0); 
+        fill(40,232,160); 
         //strokeWeight(1);
     }
-    if (i == 3){
+    if (i == 3) {
+        fill(176,66,216);
+    }
+    if (i == 4){
         //Color(Normal)
         fill(255,175,0); 
         //strokeWeight(1);
     }
-    if (i == 5){
+    if (i == 5) {
+       fill(85,188,89);
+    }
+    if (i == 6) {
+        fill(180,130,89);
+    }
+        
+    if (i == 9){
         //Color(Normal)
         fill(255,0,255); 
         //strokeWeight(1);
