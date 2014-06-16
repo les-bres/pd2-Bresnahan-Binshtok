@@ -79,6 +79,7 @@ void setup(){
         
         if (_board[i][j] > 9) {
           if (_board[i][j] % 10 == 1) {
+            fill(255,175,0);
             rect(165+(j*25),5+(i*25),25,25,20,1,1,1);
           }
           else if (_board[i][j] % 10 == 2) {
