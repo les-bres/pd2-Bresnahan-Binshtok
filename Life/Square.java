@@ -41,7 +41,7 @@ public class Square implements Comparable{
 	return col;
     }
 
-    public String getType(){
+    public int getType(){
 	return _type;
     }
 
