@@ -227,8 +227,9 @@ void draw() {
   
   update(mouseX,mouseY);
   
-  if (overSpinner)
+  if (overSpinner) {
     //print("Over spinner...");
+  }
   
   if (yesOver) {
     fill(yesHigh);

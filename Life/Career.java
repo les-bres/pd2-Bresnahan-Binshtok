@@ -2,10 +2,12 @@ public class Career {
 
     String title;
     boolean degree;
+    int salary;
 
-    public Career(String t, boolean d) {
+    public Career(String t, boolean d, int s) {
 	title = t;
 	degree = d;
+	salary = s;
     }
 
     public String getTitle() {
@@ -14,5 +16,9 @@ public class Career {
 
     public boolean DegreeNeeded() {
 	return degree;
+    }
+
+    public int getSalary() {
+	return salary;
     }
 }

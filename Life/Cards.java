@@ -19,6 +19,18 @@ public class Cards {
 	pets.add( new Pet( 80, "Exotic Bird" ) );
 
 	expenses.add( new Expense( 100, "Lost wallet." ) );
+
+
+	careers.add( new Career("Doctor", true, 100000) );
+	careers.add( new Career("Computer Consultant", true, 80000) );
+	careers.add( new Career("Artist", false, 30000) );
+	careers.add( new Career("Salesperson", false, 50000) );
+	careers.add( new Career("Athlete", false, 70000) );
+	careers.add( new Career("Accountant", true, 90000) );
+	careers.add( new Career("Teacher", true, 50000) );
+	careers.add( new Career("Police Officer", false, 60000) );
+	careers.add( new Career("Entertainer", false, 90000) );
+
 	
     }
 
