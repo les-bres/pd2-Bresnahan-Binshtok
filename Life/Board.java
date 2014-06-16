@@ -222,7 +222,7 @@ public class Board {
 	    String line = "";
 	    for (int n =0; n <_board[i].length;n++) {
 		if (_board[i][n] > 9) {
-		    line += "" + _board[i][n] % 10;
+		    line += "" + _board[i][n] / 10;
 		}
 		else if (_board[i][n] == 0) {
 		    line += " ";
@@ -454,7 +454,7 @@ public class Board {
 
 	//System.out.println( i + "");
 	//System.out.println( board.getArray( test ) );
-	//System.out.println( board );
+	System.out.println( board );
 	for (int n = 0; n <30 ; n++ ) {
 	    for (int num = 0; num <30; num++) {
 		//System.out.println( board.getBoard()[n][num] );
