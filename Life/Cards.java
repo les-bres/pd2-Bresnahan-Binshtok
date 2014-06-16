@@ -11,7 +11,15 @@ public class Cards {
     ArrayList<House> houses;
 
     public Cards() {
-	//Pets
+	// pets
+	pets.add( new Pet( 200, "Cat" ) );
+	pets.add( new Pet( 250, "Dog" ) );
+	pets.add( new Pet( 30, "Hamster" ) );
+	pets.add( new Pet( 5, "Fish" ) );
+	pets.add( new Pet( 80, "Exotic Bird" ) );
+
+	expenses.add( new Expense( 100, "Lost wallet." ) );
+	
     }
 
     public Tile getTile() {

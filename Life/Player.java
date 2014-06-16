@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Player {
 
-    private boolean college, autoIns, homeIns;
+    private boolean college;
     private ArrayList<Tile> tiles;
     private Career career;
     private House house;
@@ -15,8 +15,6 @@ public class Player {
     public Player( int gen, boolean col ) {
 	gender = gen;
 	college = col;
-	autoIns = false;
-	homeIns = false;
 	tiles = new ArrayList<Tile>();
 	career = null;
 	house = null;
