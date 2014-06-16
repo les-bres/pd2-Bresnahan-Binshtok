@@ -7,7 +7,8 @@ public class Square implements Comparable{
     private int[] color;
     private int row;
     private int col;
-    private String message;
+    private int _type;
+
     
     public Square(int r, int c){
 	row = r;
@@ -40,8 +41,8 @@ public class Square implements Comparable{
 	return col;
     }
 
-    public String getMessage(){
-	return message;
+    public String getType(){
+	return _type;
     }
 
     public boolean equals(Object o) {
