@@ -1,5 +1,5 @@
 int[][] _board;
-Square colHead, noColHead;
+Square colHead, noColHead, cur;
 PImage img;
 color c1,c2, c3, c4;
 int X_AXIS = 2;
@@ -55,31 +55,18 @@ void setup(){
   //Color Board
   for (int i = 0; i < 30; i++){
     for (int j = 0; j < 30; j++){
-      if (_board[i][j] == 1){ 
-        //Color(Normal)
-        fill(255,175,0);
-        //strokeWeight(1);
+
+      if (_board[i][j] < 10) {
+          colTest( _board[i][j]);
       }
-      if (_board[i][j] == 2){
-        //Color(Normal)
-        fill(255,175,0); 
-        //strokeWeight(1);
+      else {
+          colTest( _board[i][j] / 10 );
       }
-      if (_board[i][j] == 3){
-        //Color(Normal)
-        fill(255,175,0); 
-        //strokeWeight(1);
-      }
-      if (_board[i][j] == 5){
-        //Color(Normal)
-        fill(255,0,255); 
-        //strokeWeight(1);
-      }
+      
       if (_board[i][j] != 0){
         
         if (_board[i][j] > 9) {
           if (_board[i][j] % 10 == 1) {
-            fill(255,175,0);
             rect(165+(j*25),5+(i*25),25,25,20,1,1,1);
           }
           else if (_board[i][j] % 10 == 2) {
@@ -168,6 +155,7 @@ void setup(){
   
   needWrite = true;
   
+  cur = null;
   
 }
 
@@ -323,6 +311,29 @@ void update(int x, int y) {
   } else {
     yesOver = noOver = false;
   }
+}
+
+void colTest( int i ) {
+    if (i == 1){ 
+        //Color(Normal)
+        fill(255,175,0);
+        //strokeWeight(1);
+    }
+    if (i == 2){
+        //Color(Normal)
+        fill(255,175,0); 
+        //strokeWeight(1);
+    }
+    if (i == 3){
+        //Color(Normal)
+        fill(255,175,0); 
+        //strokeWeight(1);
+    }
+    if (i == 5){
+        //Color(Normal)
+        fill(255,0,255); 
+        //strokeWeight(1);
+    }
 }
 
 
