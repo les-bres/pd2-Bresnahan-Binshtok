@@ -291,7 +291,7 @@ void processBegin() {
     collegeBound = curAns;
     player = new Player(gender, collegeBound);
     gameBegun = true;
-    tracePath();
+    //tracePath();
   }    
    
   qNum++;
