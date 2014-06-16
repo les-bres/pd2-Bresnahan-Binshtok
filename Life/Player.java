@@ -4,7 +4,6 @@ import java.io.*;
 public class Player {
 
     private boolean college, autoIns, homeIns;
-    private ArrayList<Integer> stocks;
     private ArrayList<Tile> tiles;
     private Career career;
     private House house;
@@ -18,7 +17,6 @@ public class Player {
 	college = col;
 	autoIns = false;
 	homeIns = false;
-	stocks = new ArrayList<Integer>();
 	tiles = new ArrayList<Tile>();
 	career = null;
 	house = null;
