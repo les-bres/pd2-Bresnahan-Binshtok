@@ -1,17 +1,26 @@
 public class Square {
 
-    private Square next;
+    private Square _next;
     private int[] color;
     private int xcor;
     private int ycor;
     private String message;
-
+    
     public Square(){
-	
+      
+    }
+
+    public Square( Square next ){
+	_next = next;
     }
 
     public Square getNext(){
-	return next;
+	return _next;
+    }
+    
+    public Square setNext( Square next){
+      _next = next;
+      return _next;
     }
     
     public int[] getColor(){

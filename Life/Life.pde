@@ -207,6 +207,7 @@ void draw() {
 void processBegin() {
   if (qNum == 0) {
   }
+  
   else if (qNum == 1) {
     if (curAnsK == 1 || curAnsK == 2) {
       gender = curAnsK;

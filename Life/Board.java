@@ -1,6 +1,8 @@
 public class Board {
 
     int[][] _board;
+    Square[][] _college;
+    Square[][] _nocollege;
 
     public Board() {
 	_board = new int[30][30];
