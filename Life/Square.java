@@ -51,6 +51,13 @@ public class Square implements Comparable{
 	return _type;
     }
 
+    // 1 is stop
+    // 2 is raffle
+    // 3 is spin again
+    // 4 is life tile
+    // 5 is pay day
+    // 6 is expense
+
     public boolean equals(Object o) {
 	if (o instanceof Square && row == ((Square)o).getRow() & col == ((Square)o).getCol() ) {
 	    return true;

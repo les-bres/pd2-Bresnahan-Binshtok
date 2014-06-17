@@ -1,3 +1,7 @@
+import java.util.*;
+import java.io.*;
+
+
 int[][] _board;
 Square colHead, noColHead, curSq;
 PImage img, imgD;
@@ -172,6 +176,7 @@ void setup(){
   
   curSq = null;
   
+  curDisplay = startqs[0].getMessage();
 }
 
 void draw() {
@@ -182,11 +187,7 @@ void draw() {
     rect(85,150, 140, 290);
     
     if (!gameBegun) {
-      curDisplay = startqs[qNum].getMessage();
       buttonAns = startqs[qNum].getAnsType();
-    }
-    else {
-        curDisplay = "Are you ready to spin?";
     }
     
     textFont(f,15);
@@ -219,8 +220,9 @@ void draw() {
     fill(yesC);
   }
   
-  rect( yesX,yesY,60,50);
   
+  rect( yesX,yesY,60,50);
+ 
   if (noOver) {
     fill(noHigh);
   }
@@ -228,7 +230,9 @@ void draw() {
     fill(noC);
   }
   
+  
   rect( noX,noY,60,50);
+ 
   
   if (ansGiven) {
      if (!gameBegun) {
@@ -242,7 +246,47 @@ void draw() {
 }
 
 void turn() {
-  int spaces = spin();
+  spin();
+  int spaces = (int) (Math.random() * 10) +1;
+  System.out.println(spaces+ "");
+  
+  for (int i = 0; i < spaces; i++) {
+     curSq = curSq.getNext();
+     if ( curSq.getType() == 1 ) {
+         break;
+     }
+     if ( curSq.getType() == 5 ) {
+       player.addMoney( player.getCareer().getSalary() );
+     }
+  }
+  
+  String message = "You spun a " + spaces + " and landed on ";
+  
+  if (curSq.getType() == 1) {
+    
+      //stopped
+  }
+  if (curSq.getType() == 2) {
+    //draw raffle card
+  }
+  if (curSq.getType() == 3) {
+     //spin again
+  }
+  if (curSq.getType() == 4) {
+      // life tile
+  }
+  if (curSq.getType() == 5) {
+    //money, do nothing
+  }
+  if (curSq.getType() == 6) {
+    // draw expense
+  }
+    
+  
+  
+  curDisplay = message + "\nAre you ready to spin again?";
+  needWrite = true;
+  ansGiven = false;
 
 }
 
@@ -250,7 +294,7 @@ int spin(){
   int end = millis() + 2000;
   int start = 0;
   while (millis() < end){
-    start = int(random(9));
+    start = int(random(9)) + 1;
     int time = millis() + 250;
     while (time > millis()){
     }
@@ -377,6 +421,7 @@ void spin(float diameter, int[] data) {
 
 void processBegin() {
   if (qNum == 0) {
+    curDisplay = startqs[1].getMessage();
   }
   
   else if (qNum == 1) {
@@ -386,6 +431,7 @@ void processBegin() {
     else {
       gender = 2;
     }
+    curDisplay = startqs[2].getMessage();
   }
   else if (qNum == 2) {
     if (!(curAnsK > 0 && curAnsK < 5)) {
@@ -405,6 +451,7 @@ void processBegin() {
         carC = color(29,64,40);
       }
     }
+    curDisplay = startqs[3].getMessage();
   }
    
   else if (qNum == 3) {
@@ -419,6 +466,7 @@ void processBegin() {
     gameBegun = true;
     needMon = true;
     //tracePath();
+    curDisplay = "Are you ready to spin?";
   }    
    
   qNum++;
@@ -537,7 +585,13 @@ void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) 
   }
 }
 
-
+void pause(int seconds){
+  Date start = new Date();
+  Date end = new Date();
+  while(end.getTime() - start.getTime() < seconds * 1000){
+      end = new Date();
+  }
+}
 
 //Color(Background)
 //fill(144,238,144);

@@ -23,6 +23,13 @@ public class Player {
     public int getMoney() {
 	return money;
     }
+    
+    public void addMoney(int m) {
+	money += m;
+    }
+    public Career getCareer() {
+	return career;
+    }
 	    
 
 }
