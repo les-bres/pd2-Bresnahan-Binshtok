@@ -8,7 +8,6 @@ PFont f;
 String curDisplay;
 boolean yesOver = false;
 boolean noOver = false;
-boolean overSpinner = false;
 int qNum;
 Board board;
 
@@ -97,13 +96,14 @@ void setup(){
   setGradient( 910, 0, 200, 924, c1, c2, X_AXIS );
 
   f = loadFont("AppleBraille-20.vlw");
-  
-  fill(89,180,100);
+
+  fill(89,180,100,255);
   rectMode(CENTER);
-  rect( 980,150, 10,10);
+  rect( 980,150, 30,30);
   textAlign( CENTER );
   textFont(f,30);
-  fill(0);
+  fill(0);  
+
   text( "$0", 980, 160);
   
 
@@ -174,6 +174,93 @@ void setup(){
   
 }
 
+void draw() {
+    
+  if (needWrite) {
+    noStroke();
+    fill(0);
+    rect(85,150, 140, 290);
+    
+    if (!gameBegun) {
+      curDisplay = startqs[qNum].getMessage();
+      buttonAns = startqs[qNum].getAnsType();
+    }
+    else {
+        curDisplay = "Are you ready to spin?";
+    }
+    
+    textFont(f,15);
+    textAlign(CENTER);
+    fill(255);
+    text(curDisplay, 85,160,140,290);
+    needWrite = false;
+  }
+  
+  if (needMon) {
+    fill(117,146,196,255);
+    rectMode(CENTER);
+    rect( 980,150, 50,50);
+    textAlign( CENTER );
+    textFont(f,30);
+    fill(0);
+    String s = "$" + player.getMoney() ;
+    text( "$0", 980, 160);
+  
+  }
+     
+  
+  update(mouseX,mouseY);
+  
+  
+  if (yesOver) {
+    fill(yesHigh);
+  }
+  else {
+    fill(yesC);
+  }
+  
+  rect( yesX,yesY,60,50);
+  
+  if (noOver) {
+    fill(noHigh);
+  }
+  else {
+    fill(noC);
+  }
+  
+  rect( noX,noY,60,50);
+  
+  if (ansGiven) {
+     if (!gameBegun) {
+         processBegin();
+     }
+     else {
+        turn();
+     }
+  }
+         
+}
+
+void turn() {
+  int spaces = spin();
+
+}
+
+int spin(){
+  int end = millis() + 2000;
+  int start = 0;
+  while (millis() < end){
+    start = int(random(9));
+    int time = millis() + 250;
+    while (time > millis()){
+    }
+    int[] angles = { 36, 36, 36, 36, 36, 36, 36, 36, 36, 36 };
+    spin(150,angles);
+    time += 250;
+  }
+  return start;
+}
+
 void pieChart(float diameter, int[] data) {
   float lastAngle = 0;
   for (int i = 0; i < data.length; i++) {
@@ -213,64 +300,79 @@ void pieChart(float diameter, int[] data) {
   }
 }
 
-void draw() {
-    
-  if (needWrite) {
-    if (!gameBegun) {
-      curDisplay = startqs[qNum].getMessage();
-      buttonAns = startqs[qNum].getAnsType();
+void spin(float diameter, int[] data) {
+  float lastAngle = 0;
+  int start = int(random(9));
+  for (int i = start; i < data.length; i++) {
+    if (i == 0){
+      fill(255,218,33);
     }
-    
-    textFont(f,15);
-    textAlign(CENTER);
-    fill(255);
-    text(curDisplay, 85,160,140,290);
-    needWrite = false;
+    if (i == 1){
+      fill(255,145,21);
+    }
+    if (i == 2){
+      fill(255,72,10);
+    }
+    if (i == 3){
+      fill(209,0,0);
+    }
+    if (i == 4){
+      fill(140,17,68);
+    }
+    if (i == 5){
+      fill(74,34,136);
+    }
+    if (i == 6){
+      fill(17,51,204);
+    }
+    if (i == 7){
+      fill(0,50,60);
+    }
+    if (i == 8){
+      fill(0,131,0);
+    }
+    if (i == 9){
+      fill(0,255,0);
+    }
+    //255,218,33
+    arc((width/2)+45, (height/2)+65, diameter, diameter, lastAngle, lastAngle+radians(data[i]));
+    lastAngle += radians(data[i]);
   }
-  
-  if (needMon) {
-    fill(89,180,100);
-    rectMode(CENTER);
-    rect( 980,150, 10,10);
-    textAlign( CENTER );
-    textFont(f,30);
-    fill(0);
-    String s = "$" + player.getMoney() ;
-    text( "$0", 980, 160);
-  
+  for (int i = 0; i < start; i++) {
+    if (i == 0){
+      fill(255,218,33);
+    }
+    if (i == 1){
+      fill(255,145,21);
+    }
+    if (i == 2){
+      fill(255,72,10);
+    }
+    if (i == 3){
+      fill(209,0,0);
+    }
+    if (i == 4){
+      fill(140,17,68);
+    }
+    if (i == 5){
+      fill(74,34,136);
+    }
+    if (i == 6){
+      fill(17,51,204);
+    }
+    if (i == 7){
+      fill(0,50,60);
+    }
+    if (i == 8){
+      fill(0,131,0);
+    }
+    if (i == 9){
+      fill(0,255,0);
+    }
+    //255,218,33
+    arc((width/2)+45, (height/2)+65, diameter, diameter, lastAngle, lastAngle+radians(data[i]));
+    lastAngle += radians(data[i]);
   }
-      
-  
-  update(mouseX,mouseY);
-  
-  if (overSpinner) {
-    //print("Over spinner...");
-  }
-  
-  if (yesOver) {
-    fill(yesHigh);
-  }
-  else {
-    fill(yesC);
-  }
-  
-  rect( yesX,yesY,60,50);
-  
-  if (noOver) {
-    fill(noHigh);
-  }
-  else {
-    fill(noC);
-  }
-  
-  rect( noX,noY,60,50);
-  
-  if (ansGiven) {
-     if (!gameBegun) {
-         processBegin();
-     }
-  }
-         
 }
 
 void processBegin() {
@@ -340,10 +442,8 @@ void update(int x, int y) {
   } else if ( overRect(noX, noY, 50, 60) ) {
     noOver = true;
     yesOver = false;
-  } else if ( overSpin(noX, noY) ){
-    overSpinner = true;
-    yesOver = noOver = false;
-  } else {
+  }
+   else {
     yesOver = noOver = false;
   }
 }
@@ -386,16 +486,6 @@ boolean overRect(int x, int y, int width, int height)  {
   
   if (mouseX >= (x-30) && mouseX <= (x-30)+width && 
       mouseY >= (y-25) && mouseY <= (y-25)+height) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-boolean overSpin(int x, int y)  {
-  
-  if (mouseX >= (width/2)-105 && mouseX <= (width/2)+195 && 
-      mouseY >= (height/2)-85 && mouseY <= (height/2)+215) {
     return true;
   } else {
     return false;
