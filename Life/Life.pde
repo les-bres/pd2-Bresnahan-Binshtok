@@ -14,10 +14,11 @@ boolean yesOver = false;
 boolean noOver = false;
 int qNum;
 Board board;
-Cards cards;
+Cards cards = new Cards();
 
 int yesX,yesY,noX,noY;
 color yesC, noC, yesHigh, noHigh;
+
 
 
 boolean buttonAns;
@@ -179,7 +180,8 @@ void setup(){
   
   curDisplay = startqs[0].getMessage();
   
-  Cards cards = new Cards();
+  //Cards cards = new Cards();
+  
 }
 
 void draw() {
@@ -205,10 +207,12 @@ void draw() {
     rectMode(CENTER);
     rect( 980,150, 50,50);
     textAlign( CENTER );
-    textFont(f,30);
+    textFont(f,20);
     fill(0);
+    
     String s = "$" + player.getMoney() ;
-    text( "$0", 980, 160);
+    text( s, 980, 160);
+    needMon = false;
   
   }
      
@@ -249,6 +253,7 @@ void draw() {
 }
 
 void turn() {
+
   spin();
   int spaces = (int) (Math.random() * 10) +1;
   System.out.println(spaces+ "");
@@ -260,6 +265,7 @@ void turn() {
      }
      if ( curSq.getType() == 5 ) {
        player.addMoney( player.getCareer().getSalary() );
+       needMon = true;
      }
   }
   
@@ -269,12 +275,31 @@ void turn() {
      //stopped
       if ( (curSq.getRow() == 15 && curSq.getCol() == 21) || (curSq.getRow() == 9 && curSq.getCol() == 27)) {
         message += "Career Time.";
+        Career c = cards.getCareer();
+        while ( c.DegreeNeeded() != player.getCollege() ) {
+            c = cards.getCareer();
+        }
+        player.setCareer( c );
+        message += "You became a " + c.getTitle() + ". ";
+        message += "Your salary is " + c.getSalary();
       }
       else if ( curSq.getRow() == 2 && curSq.getCol() ==21 ) {
        message += "Adopt a Pet.";
+       Pet p = cards.getPet();
+       player.setPet( p );
+       player.addMoney( -1 * p.getFee() );
+       message += "You adopted a " + p.getName();
+       message += ". This cost you $" + p.getFee();
+       needMon = true;
       }
       else {
         message += "Buy a House.";
+        House h = cards.getHouse();
+        player.setHouse( h );
+        player.addMoney( -1 * h.getCost() );
+        message += "You moved into a " + h.getName();
+        message += ". This cost you $" + h.getCost();
+        needMon = true;
       }   
   }
   if (curSq.getType() == 2) {
@@ -282,14 +307,17 @@ void turn() {
     message += "Raffle.";
     Raffle c = cards.getRaffle();
     int num = c.getNum();
+    message += "if you spin the same number again, you get $1000";
   }
   if (curSq.getType() == 3) {
      //spin again
      message += "Spin Again.";
   }
   if (curSq.getType() == 4) {
-    message += "Life Tile.";
+    message += "Life Tile. ";
     Tile t = cards.getTile();
+    message += t.getMessage() + ", You get $" + t.getValue();
+    player.addMoney( t.getValue() );
     // life tile
   }
   if (curSq.getType() == 5) {
@@ -298,6 +326,8 @@ void turn() {
   if (curSq.getType() == 6) {
     message += "Expense.";
     Expense e = cards.getExpense();
+    message += e.getMessage() + ", You lose $" + e.getCost();
+    player.addMoney( -1 * e.getCost() );
     // draw expense
   }
     

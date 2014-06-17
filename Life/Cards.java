@@ -15,9 +15,9 @@ public class Cards {
 	pets = new ArrayList<Pet>();
 	careers = new ArrayList<Career>();
 	houses = new ArrayList<House>();
-	expenses = new Expense[15];
+	expenses = new Expense[11];
 	raffleCards = new Raffle[9];
-	tiles = new Tile[15];      
+	tiles = new Tile[11];      
        
 	// pets
 	pets.add( new Pet( 200, "Cat" ) );
@@ -26,13 +26,36 @@ public class Cards {
 	pets.add( new Pet( 5, "Fish" ) );
 	pets.add( new Pet( 80, "Exotic Bird" ) );
 
+	houses.add( new House("Malibu Mansion", 80000) );
+	houses.add( new House("Cozy Cottage", 40000) );
+	houses.add( new House("Sururban House", 40000) );
+	houses.add( new House("NYC loft",50000) );
+
 	expenses[0] = new Expense( 100, "Lost wallet." );
 	expenses[1] = new Expense( 200, "Need math tutoring");
 	expenses[2] = new Expense( 350, "Broke iphone");
 	expenses[3] = new Expense( 1500, "House flooded");
 	expenses[4] = new Expense( 5000, "Car Stolen");
+	expenses[5] = new Expense( 100, "Gave Gifts");
+	expenses[6] = new Expense( 200, "Grocery Splurge");
+	expenses[7] = new Expense( 300, "Designer Shoe Sale");
+	expenses[8] = new Expense( 3000, "Vacationed in Miami");
+	expenses[9] = new Expense( 200, "Went to a baseball game");
+	expenses[10] = new Expense( 1500, "Charity Donation" );
+
 
 	tiles[0] = new Tile(  "Won the lottery!", 10000 );
+	tiles[1] = new Tile(  "Found money on the Sidewalk!", 50 );
+	tiles[2] = new Tile(  "Won a poker game.", 200 );
+	tiles[3] = new Tile(  "Won a horse bet.", 500 );
+	tiles[4] = new Tile(  "Won a Scholarship award", 2000 );
+	tiles[5] = new Tile(  "Your stocks went up.", 1000 );
+	tiles[6] = new Tile(  "You fond a Metrocard.", 25 );
+	tiles[7] = new Tile(  "You babysat", 50 );
+	tiles[8] = new Tile(  "You tutored.", 100 );
+	tiles[9] = new Tile(  "You returned a lost pet.", 200 );
+	tiles[10] = new Tile( "You hosted a bakesale,", 100);
+
 
 
 	careers.add( new Career("Doctor", true, 100000) );
@@ -91,5 +114,10 @@ public class Cards {
 	return houses.remove( (int) (Math.random() * careers.size()) );
     }
 
+
+    public static void main( String[] args) {
+	Cards cards = new Cards();
+	System.out.println( cards.getTile().getMessage() );
+    }
 
 }

@@ -4,20 +4,18 @@ import java.io.*;
 public class Player {
 
     private boolean college;
-    private ArrayList<Tile> tiles;
     private Career career;
     private House house;
+    private Pet pet;
     private int money, gender;
-    //private square cur;
-    //private color carC;
 
     public Player( int gen, boolean col ) {
 	gender = gen;
 	college = col;
-	tiles = new ArrayList<Tile>();
 	career = null;
 	house = null;
-	money = 0;
+	pet = null;
+	money = 1000;
     }
     
     public int getMoney() {
@@ -29,6 +27,30 @@ public class Player {
     }
     public Career getCareer() {
 	return career;
+    }
+
+    public void setCareer(Career c) {
+	career = c;
+    }
+
+    public boolean getCollege() {
+	return college;
+    }
+
+    public void setHouse( House h ) {
+	house = h;
+    }
+
+    public House getHouse() {
+	return house;
+    }
+
+    public void setPet( Pet p ) {
+	pet = p;
+    }
+
+    public Pet getPet() {
+	return pet;
     }
 	    
 
