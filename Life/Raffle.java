@@ -1,12 +1,10 @@
 public class Raffle {
     private int reward;
-    private String message;
     private int num;
 
 
-    public Raffle( int rew, String m, int n ) {
+    public Raffle( int rew, int n ) {
 	reward = rew;
-	message = m;
 	num = n;
     }
 
@@ -14,9 +12,6 @@ public class Raffle {
 	return reward;
     }
 
-    public String getMessage() {
-	return message;
-    }
 
     public int getNum() {
 	return num;

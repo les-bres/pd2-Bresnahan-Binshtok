@@ -14,6 +14,7 @@ boolean yesOver = false;
 boolean noOver = false;
 int qNum;
 Board board;
+Cards cards;
 
 int yesX,yesY,noX,noY;
 color yesC, noC, yesHigh, noHigh;
@@ -177,6 +178,8 @@ void setup(){
   curSq = null;
   
   curDisplay = startqs[0].getMessage();
+  
+  Cards cards = new Cards();
 }
 
 void draw() {
@@ -276,17 +279,25 @@ void turn() {
   }
   if (curSq.getType() == 2) {
     //draw raffle card
+    message += "Raffle.";
+    Raffle c = cards.getRaffle();
+    int num = c.getNum();
   }
   if (curSq.getType() == 3) {
      //spin again
+     message += "Spin Again.";
   }
   if (curSq.getType() == 4) {
-      // life tile
+    message += "Life Tile.";
+    Tile t = cards.getTile();
+    // life tile
   }
   if (curSq.getType() == 5) {
     //money, do nothing
   }
   if (curSq.getType() == 6) {
+    message += "Expense.";
+    Expense e = cards.getExpense();
     // draw expense
   }
     
