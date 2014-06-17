@@ -205,7 +205,7 @@ void draw() {
   if (needMon) {
     fill(117,146,196,255);
     rectMode(CENTER);
-    rect( 980,150, 50,50);
+    rect( 980,150, 80,80);
     textAlign( CENTER );
     textFont(f,20);
     fill(0);
@@ -319,6 +319,7 @@ void turn() {
     message += t.getMessage() + ", You get $" + t.getValue();
     player.addMoney( t.getValue() );
     // life tile
+    needMon = true;
   }
   if (curSq.getType() == 5) {
     //money, do nothing
@@ -329,6 +330,7 @@ void turn() {
     message += e.getMessage() + ", You lose $" + e.getCost();
     player.addMoney( -1 * e.getCost() );
     // draw expense
+    needMon = true;
   }
     
   
