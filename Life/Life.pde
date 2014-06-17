@@ -1,6 +1,6 @@
 int[][] _board;
-Square colHead, noColHead, cur;
-PImage img;
+Square colHead, noColHead, curSq;
+PImage img, imgD;
 color c1,c2, c3, c4;
 int X_AXIS = 2;
 int Y_AXIS = 1;
@@ -24,7 +24,7 @@ boolean gameBegun;
 
 Question[] startqs;
 
-boolean needWrite;
+boolean needWrite, needMon;
 
 // start out variables
 int gender;
@@ -96,6 +96,20 @@ void setup(){
  
   setGradient( 910, 0, 200, 924, c1, c2, X_AXIS );
 
+  f = loadFont("AppleBraille-20.vlw");
+  
+  fill(89,180,100);
+  rectMode(CENTER);
+  rect( 980,150, 10,10);
+  textAlign( CENTER );
+  textFont(f,30);
+  fill(0);
+  text( "$0", 980, 160);
+  
+
+  
+  imgD = loadImage("dollar.jpg");
+  image( imgD, 910, 50, 140, 60);
 
   c3 = color( 152, 84, 151);
   c4 = color( 183, 96, 182 );
@@ -133,7 +147,7 @@ void setup(){
   fill(noC);
   rect(noX, noY,60,50);
   
-  f = loadFont("AppleBraille-20.vlw");
+
   textFont(f,10);
   fill(255);
   text("YES", 36,310);
@@ -154,8 +168,9 @@ void setup(){
   startqs[3] = new Question("Would you like to go to college?", true);
   
   needWrite = true;
+  needMon = false;
   
-  cur = null;
+  curSq = null;
   
 }
 
@@ -212,6 +227,19 @@ void draw() {
     text(curDisplay, 85,160,140,290);
     needWrite = false;
   }
+  
+  if (needMon) {
+    fill(89,180,100);
+    rectMode(CENTER);
+    rect( 980,150, 10,10);
+    textAlign( CENTER );
+    textFont(f,30);
+    fill(0);
+    String s = "$" + player.getMoney() ;
+    text( "$0", 980, 160);
+  
+  }
+      
   
   update(mouseX,mouseY);
   
@@ -279,8 +307,15 @@ void processBegin() {
    
   else if (qNum == 3) {
     collegeBound = curAns;
+    if (collegeBound) {
+      curSq = colHead;
+    }
+    else {
+        curSq = noColHead;
+    }
     player = new Player(gender, collegeBound);
     gameBegun = true;
+    needMon = true;
     //tracePath();
   }    
    

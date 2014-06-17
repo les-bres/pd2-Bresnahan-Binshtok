@@ -19,6 +19,10 @@ public class Cards {
 	pets.add( new Pet( 80, "Exotic Bird" ) );
 
 	expenses.add( new Expense( 100, "Lost wallet." ) );
+	expenses.add( new Expense( 200, "Need math tutoring") );
+	expenses.add( new Expense( 350, "Broke iphone") );
+	expenses.add( new Expense( 1500, "House flooded") );
+	expenses.add( new Expense( 5000, "Car Stolen") );
 
 
 	careers.add( new Career("Doctor", true, 100000) );

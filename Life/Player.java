@@ -19,5 +19,10 @@ public class Player {
 	house = null;
 	money = 0;
     }
+    
+    public int getMoney() {
+	return money;
+    }
+	    
 
 }
