@@ -1,0 +1,128 @@
+int spin(){
+  int end = millis() + 2000;
+  int start = 0;
+  while (millis() < end){
+    start = int(random(9));
+    int time = millis() + 250;
+    while (time > millis()){
+    }
+    int[] angles = { 36, 36, 36, 36, 36, 36, 36, 36, 36, 36 };
+    spin(150,angles);
+    time += 250;
+  }
+  return start;
+}
+
+void pieChart(float diameter, int[] data) {
+  float lastAngle = 0;
+  for (int i = 0; i < data.length; i++) {
+    if (i == 0){
+      fill(255,218,33);
+    }
+    if (i == 1){
+      fill(255,145,21);
+    }
+    if (i == 2){
+      fill(255,72,10);
+    }
+    if (i == 3){
+      fill(209,0,0);
+    }
+    if (i == 4){
+      fill(140,17,68);
+    }
+    if (i == 5){
+      fill(74,34,136);
+    }
+    if (i == 6){
+      fill(17,51,204);
+    }
+    if (i == 7){
+      fill(0,50,60);
+    }
+    if (i == 8){
+      fill(0,131,0);
+    }
+    if (i == 9){
+      fill(0,255,0);
+    }
+    //255,218,33
+    arc((width/2)+45, (height/2)+65, diameter, diameter, lastAngle, lastAngle+radians(data[i]));
+    lastAngle += radians(data[i]);
+  }
+}
+
+void spin(float diameter, int[] data) {
+  float lastAngle = 0;
+  int start = int(random(9));
+  for (int i = start; i < data.length; i++) {
+    if (i == 0){
+      fill(255,218,33);
+    }
+    if (i == 1){
+      fill(255,145,21);
+    }
+    if (i == 2){
+      fill(255,72,10);
+    }
+    if (i == 3){
+      fill(209,0,0);
+    }
+    if (i == 4){
+      fill(140,17,68);
+    }
+    if (i == 5){
+      fill(74,34,136);
+    }
+    if (i == 6){
+      fill(17,51,204);
+    }
+    if (i == 7){
+      fill(0,50,60);
+    }
+    if (i == 8){
+      fill(0,131,0);
+    }
+    if (i == 9){
+      fill(0,255,0);
+    }
+    //255,218,33
+    arc((width/2)+45, (height/2)+65, diameter, diameter, lastAngle, lastAngle+radians(data[i]));
+    lastAngle += radians(data[i]);
+  }
+  for (int i = 0; i < start; i++) {
+    if (i == 0){
+      fill(255,218,33);
+    }
+    if (i == 1){
+      fill(255,145,21);
+    }
+    if (i == 2){
+      fill(255,72,10);
+    }
+    if (i == 3){
+      fill(209,0,0);
+    }
+    if (i == 4){
+      fill(140,17,68);
+    }
+    if (i == 5){
+      fill(74,34,136);
+    }
+    if (i == 6){
+      fill(17,51,204);
+    }
+    if (i == 7){
+      fill(0,50,60);
+    }
+    if (i == 8){
+      fill(0,131,0);
+    }
+    if (i == 9){
+      fill(0,255,0);
+    }
+    //255,218,33
+    arc((width/2)+45, (height/2)+65, diameter, diameter, lastAngle, lastAngle+radians(data[i]));
+    lastAngle += radians(data[i]);
+  }
+}
