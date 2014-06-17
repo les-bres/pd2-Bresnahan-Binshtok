@@ -263,8 +263,16 @@ void turn() {
   String message = "You spun a " + spaces + " and landed on ";
   
   if (curSq.getType() == 1) {
-    
-      //stopped
+     //stopped
+      if ( (curSq.getRow() == 15 && curSq.getCol() == 21) || (curSq.getRow() == 9 && curSq.getCol() == 27)) {
+        message += "Career Time.";
+      }
+      else if ( curSq.getRow() == 2 && curSq.getCol() ==21 ) {
+       message += "Adopt a Pet.";
+      }
+      else {
+        message += "Buy a House.";
+      }   
   }
   if (curSq.getType() == 2) {
     //draw raffle card
