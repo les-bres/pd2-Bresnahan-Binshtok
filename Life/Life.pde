@@ -307,7 +307,6 @@ void turn() {
 
   spin();
   int spaces = (int) (Math.random() * 10) +1;
-  System.out.println(spaces+ "");
   prevSq = curSq;
   
   for (int i = 0; i < spaces; i++) {
@@ -325,7 +324,6 @@ void turn() {
      }
   }
   
-  System.out.println( curSq.getRow() + " " + curSq.getCol() );
   String message = "You spun a " + spaces + " and landed on ";
   
   if (curSq.getType() == 1) {
@@ -543,7 +541,6 @@ void processBegin() {
     curDisplay = startqs[2].getMessage();
   }
   else if (qNum == 2) {
-    System.out.println(curAnsK);
     /*
     if (curAnsK < 0  || curAnsK > 4) {
             System.out.println("dog");
