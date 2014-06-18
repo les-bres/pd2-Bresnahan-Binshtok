@@ -534,23 +534,31 @@ void processBegin() {
     curDisplay = startqs[2].getMessage();
   }
   else if (qNum == 2) {
-    if (!(curAnsK > 0 && curAnsK < 5)) {
+    System.out.println(curAnsK);
+    /*
+    if (curAnsK < 0  || curAnsK > 4) {
+            System.out.println("dog");
       imgCar = loadImage("red.jpg");
     }
     else {
-      if ( curAnsK == 1) {
+      */
+
+      if ( Character.getNumericValue(curAnsK) == 1) {
         imgCar = loadImage("red.jpg");
       }
-      if (curAnsK == 2) {
+      if (Character.getNumericValue(curAnsK) == 2) {
         imgCar = loadImage("blue.jpg");
       }
-      if (curAnsK == 3) {
+      if (Character.getNumericValue(curAnsK) == 3) {
         imgCar = loadImage("orange.jpg");
       }
-      else {
+      if (Character.getNumericValue(curAnsK) == 4) {
         imgCar = loadImage("green.jpg");
       }
-    }
+      else {
+        imgCar = loadImage("red.jpg");
+      }
+    
     curDisplay = startqs[3].getMessage();
   }
    
