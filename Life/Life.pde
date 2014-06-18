@@ -3,8 +3,8 @@ import java.io.*;
 
 
 int[][] _board;
-Square colHead, noColHead, curSq;
-PImage img, imgD;
+Square colHead, noColHead, curSq, prevSq;
+PImage img, imgD, imgCar;
 color c1,c2, c3, c4;
 int X_AXIS = 2;
 int Y_AXIS = 1;
@@ -33,10 +33,10 @@ boolean needWrite, needMon;
 
 // start out variables
 int gender;
-color carC;
 boolean collegeBound;
 Player player;
-
+boolean car = false;
+int carX, carY;
 
 void setup(){
   qNum = 0;
@@ -240,6 +240,45 @@ void draw() {
   
   rect( noX,noY,60,50);
  
+  if (car) {
+    
+    if (prevSq != null) {
+      
+      int i = prevSq.getRow();
+      int j = prevSq.getCol();
+      
+      if (_board[i][j] < 10) {
+          colTest( _board[i][j]);
+      }
+      else {
+          colTest( _board[i][j] / 10 );
+      }
+      
+      if (_board[i][j] != 0){
+        
+
+        if (_board[i][j] > 9) {
+          if (_board[i][j] % 10 == 1) {
+            rect(175+(j*25),15+(i*25),25,25,20,1,1,1);
+          }
+          else if (_board[i][j] % 10 == 2) {
+            rect(165+(j*25),5+(i*25),25,25,1,20,1,1);
+          }
+          else if (_board[i][j] % 10 == 3) {
+            rect(165+(j*25),5+(i*25),25,25,1,1,20,1);
+          }
+          else if (_board[i][j] % 10 == 4) {
+            rect(165+(j*25),5+(i*25),25,25,1,1,1,20);
+          }
+        }
+        else {  
+        rect(165+(j*25),5+(i*25),25,25,1,1,1,1);
+        }
+      }
+    }
+    
+     image( imgCar, 165 + curSq.getRow() * 25 , 5 + curSq.getCol() * 25, 20, 10);
+  }
   
   if (ansGiven) {
      if (!gameBegun) {
@@ -257,6 +296,7 @@ void turn() {
   spin();
   int spaces = (int) (Math.random() * 10) +1;
   System.out.println(spaces+ "");
+  prevSq = curSq;
   
   for (int i = 0; i < spaces; i++) {
      curSq = curSq.getNext();
@@ -486,20 +526,20 @@ void processBegin() {
   }
   else if (qNum == 2) {
     if (!(curAnsK > 0 && curAnsK < 5)) {
-      carC = color(216,50,56);
+      imgCar = loadImage("red.jpg");
     }
     else {
       if ( curAnsK == 1) {
-        carC = color(216,50,56);
+        imgCar = loadImage("red.jpg");
       }
       if (curAnsK == 2) {
-        carC = color(44,66,255);
+        imgCar = loadImage("blue.jpg");
       }
       if (curAnsK == 3) {
-        carC = color(237,83,26);
+        imgCar = loadImage("orange.jpg");
       }
       else {
-        carC = color(29,64,40);
+        imgCar = loadImage("green.jpg");
       }
     }
     curDisplay = startqs[3].getMessage();
@@ -516,6 +556,7 @@ void processBegin() {
     player = new Player(gender, collegeBound);
     gameBegun = true;
     needMon = true;
+    car = true;
     //tracePath();
     curDisplay = "Are you ready to spin?";
   }    
