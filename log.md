@@ -11,7 +11,7 @@
 6/13/14- Leslie- refined board setup with for-loops
 	       - Set up background/ window with image
 	       - color sidebars with gradient
-6/15/14- Leslie- further condensed board contructio
+6/15/14- Leslie- further condensed board contruction
 	       -separated board instantiation from sketch
 	       -fixed coloring and stroke issues
 	       -created yes and no buttons w/ mouse interaction
@@ -22,4 +22,16 @@
 	       -added linked list functionality to board by using maze solver recursion
 6/16/14- Leslie -new Card classes:Expense, Pet, Raffle
 		-set up card class to hold the various types and initiated the diff cards w/ diff messages
+		-update player class and implement various instances of the cards
+		-fixed white space problem with board
+		-remove mouse functionality from spinner bc problems
+		-wrote algorithm to color diff spaces on board based on square type & assign types based on frequency in immediate proximity
+		-add money display on the side
+		-incorporate spin into turn method & implement turn so that it displays questions and acts according to square type
+		-changed card data structure from array to arraylist
+		-added car functionality that you see yourself moving through board
+		-fixed null pointer exceptions from wonky implementation of card classes
+		-implement ending with booleans
+		-fixed cars so that diff colors possible
+
 
