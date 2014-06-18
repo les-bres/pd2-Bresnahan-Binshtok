@@ -78,6 +78,10 @@ public class Cards {
 	raffleCards.add( new Raffle( 800, 8) );
 	raffleCards.add( new Raffle( 900, 9) );
 
+	shuffle(raffleCards);
+	shuffle(tiles);
+	shuffle(expenses);
+
 	
     }
 
@@ -94,7 +98,7 @@ public class Cards {
     }
 
     public Expense getExpense() {
-	Expense ret = expenses.get(0);
+	Expense ret = expenses.remove(0);
 	expenses.add(ret);
 	return ret;
     }
@@ -112,9 +116,21 @@ public class Cards {
     }
 
 
+    public void shuffle(ArrayList arr) {
+	for (int i = 0; i <40; i++) {
+	    int a = (int) (Math.random() * arr.size());
+	    int b = (int) (Math.random() * arr.size());
+	    Object c = arr.get( a );
+	    Object d = arr.get( b );
+	    arr.set( a, d);
+	    arr.set( b, c);
+	}
+    }
+
+
     public static void main( String[] args) {
 	Cards cards = new Cards();
-	System.out.println( cards.getTile().getMessage() );
+	System.out.println( cards.getExpense().getMessage() );
     }
 
 }

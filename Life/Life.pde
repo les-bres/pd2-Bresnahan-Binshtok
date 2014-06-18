@@ -26,6 +26,7 @@ boolean ansGiven, curAns ;
 char curAnsK;
 
 boolean gameBegun;
+boolean gameGoing = true;
 
 Question[] startqs;
 
@@ -198,14 +199,14 @@ void draw() {
     textFont(f,15);
     textAlign(CENTER);
     fill(255);
-    text(curDisplay, 85,160,140,290);
+    text(curDisplay, 86,160,140,290);
     needWrite = false;
   }
   
   if (needMon) {
     fill(117,146,196,255);
     rectMode(CENTER);
-    rect( 980,150, 80,80);
+    rect( 980,150, 100,80);
     textAlign( CENTER );
     textFont(f,20);
     fill(0);
@@ -291,8 +292,12 @@ void draw() {
      if (!gameBegun) {
          processBegin();
      }
-     else {
+     else if (gameGoing) {
         turn();
+     }
+     else {
+       needWrite = true;
+       curDisplay = "Congrats, you have finished the game with $" + player.getMoney();
      }
   }
          
@@ -313,6 +318,10 @@ void turn() {
      if ( curSq.getType() == 5 ) {
        player.addMoney( player.getCareer().getSalary() );
        needMon = true;
+     }
+     if ( curSq.getRow() == 28 && curSq.getCol() == 24 ){
+       gameGoing = false;
+       return;
      }
   }
   
@@ -546,13 +555,13 @@ void processBegin() {
       if ( Character.getNumericValue(curAnsK) == 1) {
         imgCar = loadImage("red.jpg");
       }
-      if (Character.getNumericValue(curAnsK) == 2) {
+      else if (Character.getNumericValue(curAnsK) == 2) {
         imgCar = loadImage("blue.jpg");
       }
-      if (Character.getNumericValue(curAnsK) == 3) {
+      else if (Character.getNumericValue(curAnsK) == 3) {
         imgCar = loadImage("orange.jpg");
       }
-      if (Character.getNumericValue(curAnsK) == 4) {
+      else if (Character.getNumericValue(curAnsK) == 4) {
         imgCar = loadImage("green.jpg");
       }
       else {
