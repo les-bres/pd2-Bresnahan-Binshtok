@@ -243,7 +243,7 @@ void draw() {
   if (car) {
     
     rectMode( CORNER );
-    strokeWeight(5);
+    strokeWeight(1);
     stroke(75);
     if (prevSq != null) {
       
@@ -282,7 +282,7 @@ void draw() {
     
      noStroke();
 
-     image( imgCar, 165 + curSq.getCol() * 25, 5 + curSq.getRow() * 25,  20, 10);
+     image( imgCar, 167 + curSq.getCol() * 25, 7 + curSq.getRow() * 25,  20, 10);
      rectMode(CENTER);
      
   }
@@ -354,7 +354,7 @@ void turn() {
     //draw raffle card
     message += "Raffle.";
     Raffle c = cards.getRaffle();
-    //int num = c.getNum();
+    int num = c.getNum();
     message += "if you spin the same number again, you get $1000";
   }
   if (curSq.getType() == 3) {
@@ -370,6 +370,7 @@ void turn() {
     needMon = true;
   }
   if (curSq.getType() == 5) {
+    message += "Pay Day.";
     //money, do nothing
   }
   if (curSq.getType() == 6) {
@@ -554,19 +555,29 @@ void processBegin() {
   }
    
   else if (qNum == 3) {
+    curDisplay = "";
     collegeBound = curAns;
+    player = new Player(gender, collegeBound);
     if (collegeBound) {
       curSq = colHead;
     }
     else {
         curSq = noColHead;
+        curDisplay += "Career Time.";
+        Career c = cards.getCareer();
+        while ( c.DegreeNeeded() != player.getCollege() ) {
+            c = cards.getCareer();
+        }
+        player.setCareer( c );
+        curDisplay += "You became a " + c.getTitle() + ". ";
+        curDisplay += "Your salary is " + c.getSalary() + "\n";
+        
     }
-    player = new Player(gender, collegeBound);
     gameBegun = true;
     needMon = true;
     car = true;
     //tracePath();
-    curDisplay = "Are you ready to spin?";
+    curDisplay += "Are you ready to spin?";
   }    
    
   qNum++;
