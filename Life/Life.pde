@@ -242,6 +242,9 @@ void draw() {
  
   if (car) {
     
+    rectMode( CORNER );
+    strokeWeight(5);
+    stroke(75);
     if (prevSq != null) {
       
       int i = prevSq.getRow();
@@ -259,7 +262,7 @@ void draw() {
 
         if (_board[i][j] > 9) {
           if (_board[i][j] % 10 == 1) {
-            rect(175+(j*25),15+(i*25),25,25,20,1,1,1);
+            rect(165+(j*25),5+(i*25),25,25,20,1,1,1);
           }
           else if (_board[i][j] % 10 == 2) {
             rect(165+(j*25),5+(i*25),25,25,1,20,1,1);
@@ -277,7 +280,11 @@ void draw() {
       }
     }
     
-     image( imgCar, 165 + curSq.getRow() * 25 , 5 + curSq.getCol() * 25, 20, 10);
+     noStroke();
+
+     image( imgCar, 165 + curSq.getCol() * 25, 5 + curSq.getRow() * 25,  20, 10);
+     rectMode(CENTER);
+     
   }
   
   if (ansGiven) {
@@ -309,6 +316,7 @@ void turn() {
      }
   }
   
+  System.out.println( curSq.getRow() + " " + curSq.getCol() );
   String message = "You spun a " + spaces + " and landed on ";
   
   if (curSq.getType() == 1) {
@@ -346,7 +354,7 @@ void turn() {
     //draw raffle card
     message += "Raffle.";
     Raffle c = cards.getRaffle();
-    int num = c.getNum();
+    //int num = c.getNum();
     message += "if you spin the same number again, you get $1000";
   }
   if (curSq.getType() == 3) {
